@@ -2,12 +2,27 @@ import { CreateActions } from 'bakadux';
 
 module.exports = CreateActions([
 	{
-		actionType: 'toggleTest',
-		func: ({stores, history}) => {
-//			const generalStore = stores.general;
+		actionType: 'toggleLog',
+		func: ({stores}, key) => {
+			const generalStore = stores.general;
 
-//			history.pushState({page: generalStore.get('page')}, '/map');
-//			generalStore.set('page', 'map');
+			generalStore.set('selectedLogType', key);
+		}
+	},
+	{
+		actionType: 'toggleLoose',
+		func: ({stores}, key) => {
+			const generalStore = stores.general;
+
+			generalStore.set('selectedLooseType', key);
+		}
+	},
+	{
+		actionType: 'toggleRecover',
+		func: ({stores}, key) => {
+			const generalStore = stores.general;
+
+			generalStore.set('selectedRecoverType', key);
 		}
 	}
 ]);
