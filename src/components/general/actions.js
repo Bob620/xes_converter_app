@@ -1,5 +1,7 @@
 import { CreateActions } from 'bakadux';
 
+const { ipcRenderer } = require('electron');
+
 module.exports = CreateActions([
 	{
 		actionType: 'toggleLog',
@@ -62,7 +64,30 @@ module.exports = CreateActions([
 	{
 		actionType: 'setWorkingDirectory',
 		func: ({stores}, {target}) => {
+			stores.general.set('workingDir', target.files[0].path);
+
 			console.log(target.files);
 		}
-	}
+	},
+    {
+        actionType: 'runXesConverter',
+        func: ({stores}) => {
+			const generalStore = stores.general;
+			const toggleOptions = generalStore.get('toggleOptions');
+
+			ipcRenderer.send('messages', {
+				uri: generalStore.get('workingDir'),
+				options: {
+					xes: toggleOptions.get('xes').enabled,
+                    qlw: toggleOptions.get('qlw').enabled,
+                    sum: toggleOptions.get('sum').enabled,
+                    qmap: toggleOptions.get('qmap').enabled,
+                    map: toggleOptions.get('map').enabled,
+                    line: toggleOptions.get('line').enabled,
+					recover: toggleOptions.get('recover').enabled,
+					loose: generalStore.get('selectedLooseType') === 'loose'
+				}
+			})
+        }
+    }
 ]);

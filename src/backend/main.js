@@ -1,11 +1,20 @@
 const createWindow = require('./createwindow.js');
 
-const {app} = require('electron');
+const xesConverter = require('xes_converter');
+const { app, ipcMain } = require('electron');
 let window = null;
 
 app.on('ready', () => {
 	if (window === null)
 		window = createWindow();
+
+    ipcMain.on('messages', (event, arg) => {
+        switch(event) {
+            case 'convert':
+                xesConverter.process(arg.uri, arg.options);
+                break;
+        }
+    });
 });
 
 // Quit when all windows are closed.

@@ -33,6 +33,7 @@ class Page extends Component {
 				<input onChange={generalActions.setBatchSize} placeholder="Batch Size" value={generalStore.get('batchSize')} type="number" step="10" />
 				<Dropdown func={generalActions.setOutputMode} options={generalStore.get('outputModes')} selectedValue={generalStore.get('selectedOutputMode')} />
 				<input onChange={generalActions.setWorkingDirectory} type="file" webkitdirectory="true" />
+				<input type="submit" onClick={generalActions.runXesConverter} />
 			</section>
 		);
 	}
