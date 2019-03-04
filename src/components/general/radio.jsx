@@ -11,7 +11,7 @@ export default class Radio extends Component {
 		return (
 			<div className="radio-selector">
 				{this.props.values.map(({value, text}) =>
-					<div className={value === this.props.activeValue ? 'selected' : ''} key={value} onClick={this.props.func.bind(null, value)} id={value}>
+					<div className={value === this.props.selectedValue ? 'selected' : ''} key={value} onClick={this.props.func.bind(null, value)} id={value}>
 						<div><div></div></div>
 						<label>{text}</label>
 					</div>

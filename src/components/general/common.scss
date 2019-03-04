@@ -28,6 +28,16 @@ $main-off-white: whitesmoke;
   }
 }
 
+@keyframes checkbox-fade {
+  from {
+    background-color: $main-off-white;
+  }
+
+  to {
+    background-color: $main-blue;
+  }
+}
+
 body {
   background-color: $main-background-color;
   color: $main-off-white;
@@ -42,7 +52,6 @@ body {
     .radio-selector {
       display: flex;
       flex-direction: column;
-      width: min-content;
 
       &.horizontal {
         flex-direction: row;
@@ -170,6 +179,71 @@ body {
           border-top-right-radius: 50%;
           border-bottom-right-radius: 50%;
         }
+      }
+    }
+
+    .toggle-button {
+      display: flex;
+
+      height: 22px;
+      margin: 10px;
+
+      cursor: pointer;
+
+      &.checked > div {
+        animation-name: checkbox-fade;
+        animation-duration: 0.2s;
+
+        background-color: $main-blue;
+        box-shadow: none;
+      }
+
+      > div {
+        width: 22px;
+        height: 22px;
+
+        background-color: $main-off-white;
+
+        border-radius: 20%;
+        margin-right: 10px;
+
+        box-shadow: 0 0 10px -1px #222 inset;
+
+        > svg {
+          padding: 2px;
+
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      > label {
+        display: flex;
+        flex-direction: column;
+        height: 22px;
+
+        cursor: pointer;
+      }
+    }
+
+    input {
+      font-family: "Varela Round", serif;
+      font-size: 1em;
+
+      padding: 4px;
+
+      border: none;
+      background-color: whitesmoke;
+      box-shadow: 0 0 10px -1px #222 inset;
+    }
+
+    .dropdown {
+      margin: 10px;
+
+      > select {
+        border: none;
+        font-family: "Varela Round", serif;
+        font-size: 1em;
       }
     }
   }
