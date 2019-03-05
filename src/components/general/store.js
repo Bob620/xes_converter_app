@@ -2,7 +2,7 @@ import { Store } from 'bakadux';
 
 module.exports = new Store('general', {
 	page: 'landing',
-	batchSize: 200,
+	batchSize: 100,
 	selectedOutputMode: 'default',
 	outputModes: [
 		{

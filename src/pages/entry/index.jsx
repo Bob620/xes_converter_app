@@ -34,6 +34,7 @@ class Page extends Component {
 				<Dropdown func={generalActions.setOutputMode} options={generalStore.get('outputModes')} selectedValue={generalStore.get('selectedOutputMode')} />
 				<input onChange={generalActions.setWorkingDirectory} type="file" webkitdirectory="true" />
 				<input type="submit" onClick={generalActions.runXesConverter} />
+				<p>{generalStore.get('displayInfo')}</p>
 			</section>
 		);
 	}

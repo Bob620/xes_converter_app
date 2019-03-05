@@ -8,10 +8,20 @@ app.on('ready', () => {
 	if (window === null)
 		window = createWindow();
 
-    ipcMain.on('messages', (event, arg) => {
-        switch(event) {
+    ipcMain.on('messages', ({sender}, {type, data}) => {
+        switch(type) {
+            case 'convert-start':
+                sender.send('info', {
+                    type: 'convert-ready',
+                    data: 'Converting Directory...'
+                });
+                break;
             case 'convert':
-                xesConverter.process(arg.uri, arg.options);
+                xesConverter.process(data.uri, data.options);
+                sender.send('info', {
+                    type: 'display',
+                    data: 'Finished Converting'
+                });
                 break;
         }
     });
