@@ -17,10 +17,11 @@ app.on('ready', () => {
                 });
                 break;
             case 'convert':
-                xesConverter.process(data.uri, data.options);
-                sender.send('info', {
-                    type: 'display',
-                    data: 'Finished Converting'
+                xesConverter.process(data.uri, data.options).then(() => {
+	                sender.send('info', {
+		                type: 'display',
+		                data: 'Finished Converting'
+	                });
                 });
                 break;
         }
